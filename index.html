@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaféSelect - Assinatura de Cafés Artesanais Premium</title>
+    <meta name="description" content="Descubra os melhores cafés artesanais do mundo com nossa assinatura premium. Grãos selecionados, torrados na hora e entregues na sua porta.">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-coffee"></i>
+                    <span>CaféSelect</span>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <a href="#inicio" class="nav-link active">Início</a>
+                    <a href="#produtos" class="nav-link">Produtos</a>
+                    <a href="#assinaturas" class="nav-link">Assinaturas</a>
+                    <a href="#sobre" class="nav-link">Sobre</a>
+                    <a href="#contato" class="nav-link">Contato</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="user-btn" onclick="toggleUserMenu()" id="userBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Entrar</span>
+                    </button>
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- User Menu Dropdown -->
+    <div class="user-menu" id="userMenu">
+        <div id="loggedOutMenu">
+            <button onclick="showLogin()" class="menu-item">
+                <i class="fas fa-sign-in-alt"></i> Entrar
+            </button>
+            <button onclick="showRegister()" class="menu-item">
+                <i class="fas fa-user-plus"></i> Cadastrar
+            </button>
+        </div>
+        <div id="loggedInMenu" style="display: none;">
+            <button onclick="showProfile()" class="menu-item">
+                <i class="fas fa-user"></i> Meu Perfil
+            </button>
+            <button onclick="showOrders()" class="menu-item">
+                <i class="fas fa-box"></i> Meus Pedidos
+            </button>
+            <button onclick="logout()" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Descubra os Melhores
+                    <span class="highlight">Cafés Artesanais</span>
+                    do Mundo
+                </h1>
+                <p class="hero-description">
+                    Assinatura premium com grãos selecionados, torrados na hora e entregues diretamente na sua porta. 
+                    Uma experiência única para verdadeiros apreciadores de café.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('assinaturas')">
+                        Começar Assinatura
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('produtos')">
+                        Ver Produtos
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/324028/pexels-photo-324028.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Café artesanal premium">
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos em Destaque -->
+    <section id="produtos" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos Cafés Premium</h2>
+                <p>Seleção especial de grãos únicos de diferentes regiões do mundo</p>
+            </div>
+            
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="arabica">Arábica</button>
+                <button class="filter-btn" data-filter="robusta">Robusta</button>
+                <button class="filter-btn" data-filter="especial">Especiais</button>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Produtos serão carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Assinaturas -->
+    <section id="assinaturas" class="subscriptions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Planos de Assinatura</h2>
+                <p>Escolha o plano perfeito para sua rotina de café</p>
+            </div>
+            
+            <div class="subscriptions-grid">
+                <div class="subscription-card">
+                    <div class="card-header">
+                        <h3>Básico</h3>
+                        <div class="price">
+                            <span class="currency">R$</span>
+                            <span class="amount">49</span>
+                            <span class="period">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 2 pacotes de 250g</li>
+                        <li><i class="fas fa-check"></i> Entrega mensal</li>
+                        <li><i class="fas fa-check"></i> Grãos premium</li>
+                        <li><i class="fas fa-check"></i> Frete grátis</li>
+                    </ul>
+                    <button class="subscribe-btn" onclick="selectPlan('basic')">Assinar Agora</button>
+                </div>
+                
+                <div class="subscription-card featured">
+                    <div class="popular-badge">Mais Popular</div>
+                    <div class="card-header">
+                        <h3>Premium</h3>
+                        <div class="price">
+                            <span class="currency">R$</span>
+                            <span class="amount">89</span>
+                            <span class="period">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 4 pacotes de 250g</li>
+                        <li><i class="fas fa-check"></i> Entrega quinzenal</li>
+                        <li><i class="fas fa-check"></i> Grãos especiais</li>
+                        <li><i class="fas fa-check"></i> Frete grátis</li>
+                        <li><i class="fas fa-check"></i> Guia de degustação</li>
+                    </ul>
+                    <button class="subscribe-btn" onclick="selectPlan('premium')">Assinar Agora</button>
+                </div>
+                
+                <div class="subscription-card">
+                    <div class="card-header">
+                        <h3>Deluxe</h3>
+                        <div class="price">
+                            <span class="currency">R$</span>
+                            <span class="amount">149</span>
+                            <span class="period">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 6 pacotes de 250g</li>
+                        <li><i class="fas fa-check"></i> Entrega semanal</li>
+                        <li><i class="fas fa-check"></i> Grãos raros</li>
+                        <li><i class="fas fa-check"></i> Frete grátis</li>
+                        <li><i class="fas fa-check"></i> Acessórios exclusivos</li>
+                        <li><i class="fas fa-check"></i> Consultor pessoal</li>
+                    </ul>
+                    <button class="subscribe-btn" onclick="selectPlan('deluxe')">Assinar Agora</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Nossa História</h2>
+                    <p>
+                        Fundada em 2020 por apaixonados por café, a CaféSelect nasceu com a missão de 
+                        democratizar o acesso aos melhores cafés artesanais do mundo. Trabalhamos 
+                        diretamente com produtores locais, garantindo qualidade excepcional e 
+                        práticas sustentáveis.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Produtores Parceiros</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10k+</span>
+                            <span class="stat-label">Clientes Satisfeitos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15</span>
+                            <span class="stat-label">Países de Origem</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Produção de café artesanal">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>O que nossos clientes dizem</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Melhor café que já experimentei! A qualidade é excepcional e a entrega sempre pontual."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Maria Silva">
+                        <div>
+                            <strong>Maria Silva</strong>
+                            <span>São Paulo, SP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Adoro a variedade de sabores. Cada mês é uma nova descoberta!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100" alt="João Santos">
+                        <div>
+                            <strong>João Santos</strong>
+                            <span>Rio de Janeiro, RJ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Atendimento impecável e produtos de altíssima qualidade. Recomendo!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Ana Costa">
+                        <div>
+                            <strong>Ana Costa</strong>
+                            <span>Belo Horizonte, MG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Entre em Contato</h2>
+                    <p>Tem alguma dúvida? Estamos aqui para ajudar!</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Telefone</strong>
+                                <span>(11) 9999-9999</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <span>contato@cafeselect.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Endereço</strong>
+                                <span>São Paulo, SP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" onsubmit="handleContactForm(event)">
+                    <div class="form-group">
+                        <input type="text" id="contactName" required placeholder=" ">
+                        <label for="contactName">Nome</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="contactEmail" required placeholder=" ">
+                        <label for="contactEmail">Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="contactPhone" placeholder=" ">
+                        <label for="contactPhone">Telefone</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="contactMessage" required placeholder=" "></textarea>
+                        <label for="contactMessage">Mensagem</label>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-coffee"></i>
+                        <span>CaféSelect</span>
+                    </div>
+                    <p>Os melhores cafés artesanais do mundo, entregues na sua porta.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#assinaturas">Assinaturas</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Receba novidades e ofertas especiais</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                        <input type="email" placeholder="Seu email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CaféSelect. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modais -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Entrar</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" required placeholder=" ">
+                    <label for="loginEmail">Email</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" required placeholder=" ">
+                    <label for="loginPassword">Senha</label>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="modal-switch">
+                    Não tem conta? <a href="#" onclick="switchModal('loginModal', 'registerModal')">Cadastre-se</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Cadastrar</h2>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <input type="text" id="registerName" required placeholder=" ">
+                    <label for="registerName">Nome</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" required placeholder=" ">
+                    <label for="registerEmail">Email</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" required placeholder=" ">
+                    <label for="registerPassword">Senha</label>
+                </div>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+                <p class="modal-switch">
+                    Já tem conta? <a href="#" onclick="switchModal('registerModal', 'loginModal')">Entre aqui</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Carrinho de Compras</h3>
+            <button onclick="toggleCart()" class="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Itens do carrinho serão adicionados aqui -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeOverlay()"></div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
